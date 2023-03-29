@@ -32,7 +32,6 @@ public class PersonController {
         return personRepository.save(post);
     }
 
-    // TODO: Modify this PUT endpoint so that it updates an existing person by ID
     @PutMapping("/{id}")
     public Person updatePersonById(@PathVariable Long id, @RequestBody Person person) {
         Optional<Person> foundPerson = personRepository.findById(id);
