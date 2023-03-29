@@ -11,7 +11,7 @@ import group.project.messageboard.models.Post;
 import group.project.messageboard.repositories.PostRepository;
 
 @RestController
-@RequestMapping("/api/posts")
+@RequestMapping("/api/post")
 public class PostController {
 
     private final PostRepository postRepository;
