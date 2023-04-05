@@ -1,5 +1,9 @@
 package group.project.messageboard.repositories;
 
+import java.time.LocalDate;
+import java.util.Date;
+
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import group.project.messageboard.models.Post;
@@ -18,4 +22,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
         existingPost.setUploadedFile(newPost.getUploadedFile());
         return this.save(existingPost);
     }
+
+    @Query("SELECT p FROM Post p WHERE p.isApproved = true AND p.dateOfExpiration > :today")
+    Iterable<Post> getCalendarView(LocalDate today);
 }

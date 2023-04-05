@@ -1,5 +1,6 @@
 package group.project.messageboard.controllers;
 
+import java.time.LocalDate;
 import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
@@ -32,7 +33,7 @@ public class PostController {
     }
 
     @PutMapping("/{id}")
-    public Post updatePersonById(@PathVariable Long id, @RequestBody Post post) {
+    public Post updatePostyId(@PathVariable Long id, @RequestBody Post post) {
         Optional<Post> foundPost = postRepository.findById(id);
         return postRepository.updatePost(foundPost.get(), post);
     }
@@ -48,6 +49,12 @@ public class PostController {
     public Post getById(@PathVariable Long id)
     {
         return postRepository.findById(id).get();
+    }
+
+    @GetMapping("/calendarView")
+    public Iterable<Post> getCalendarView() {
+        LocalDate today = LocalDate.now();
+        return postRepository.getCalendarView(today);
     }
 
 }
