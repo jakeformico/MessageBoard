@@ -4,10 +4,12 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.annotation.Nonnull;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
 @Data
@@ -20,8 +22,8 @@ public class Post {
 
     private Date createdAt = new Date();
 
-    @Nonnull
-    private String creatorId;
+    @ManyToOne(cascade = CascadeType.MERGE)
+    private Person person;
 
     private boolean isApproved;
 

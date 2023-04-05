@@ -63,19 +63,6 @@ public class Person implements UserDetails {
         this.personRole = personRole;
     }
 
-    // private Type type;
-
-    // public enum Type {
-    // OfficeManager, Faculty, Admin
-    // }
-
-    @OneToMany(cascade = CascadeType.MERGE)
-    private List<Post> postList = new ArrayList<Post>();
-
-    public void addContent(Post post) {
-        this.postList.add(post);
-    }
-
     public String getPassword() {
         return password;
     }

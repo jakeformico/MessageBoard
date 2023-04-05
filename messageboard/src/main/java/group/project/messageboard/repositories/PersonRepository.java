@@ -11,7 +11,6 @@ public interface PersonRepository extends CrudRepository<Person, Long> {
         existingPerson.setFirstName(newPerson.getFirstName());
         existingPerson.setLastName(newPerson.getLastName());
         existingPerson.setEmail(newPerson.getEmail());
-        existingPerson.setPostList(newPerson.getPostList());
         existingPerson.setPersonRole(newPerson.getPersonRole());
         return this.save(existingPerson);
     }
