@@ -5,7 +5,9 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import group.project.messageboard.models.Person;
 import group.project.messageboard.models.Post;
+import group.project.messageboard.services.PersonService;
 import group.project.messageboard.services.PostService;
 
 @RestController
@@ -13,9 +15,11 @@ import group.project.messageboard.services.PostService;
 public class PostController {
 
     private final PostService postService;
+    private final PersonService personService;
 
-    public PostController(PostService postService) {
+    public PostController(PostService postService, PersonService personService) {
         this.postService = postService;
+        this.personService = personService;
     }
 
     @GetMapping
@@ -23,9 +27,11 @@ public class PostController {
         return postService.getAllPosts();
     }
 
-    @PostMapping(value="/create")
+    @PostMapping(value="/create/{personId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post createPost(@RequestBody Post post) {
+    public Post createPost(@RequestBody Post post, @PathVariable Long personId) {
+        Person foundPerson = personService.getById(personId);
+        post.setPerson(foundPerson);
         return postService.createPost(post);
     }
 

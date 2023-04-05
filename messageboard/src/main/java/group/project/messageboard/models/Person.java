@@ -32,12 +32,12 @@ public class Person {
     @Nonnull
     private String email;
 
-    @OneToMany(cascade = CascadeType.MERGE)
-    private List<Post> postList = new ArrayList<Post>();
+    // @OneToMany(cascade = CascadeType.MERGE)
+    // private List<Post> postList = new ArrayList<Post>();
 
-    public void addContent(Post post) {
-        this.postList.add(post);
-    }
+    // public void addContent(Post post) {
+    //     this.postList.add(post);
+    // }
 
     private Type type;
 

@@ -16,7 +16,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
         existingPost.setDateOfEvent(newPost.getDateOfEvent());
         existingPost.setApproved(newPost.isApproved());
         existingPost.setCreatedAt(newPost.getCreatedAt());
-        existingPost.setCreatorId(newPost.getCreatorId());
+        existingPost.setPerson(newPost.getPerson());
         existingPost.setDateOfExpiration(newPost.getDateOfExpiration());
         existingPost.setDescription(newPost.getDescription());
         existingPost.setUploadedFile(newPost.getUploadedFile());
