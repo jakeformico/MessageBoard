@@ -44,12 +44,17 @@ public class SecurityConfig {
         return http
                 .csrf().disable() // Todo: Try to see if this works for testing
                 .authorizeHttpRequests()
-                .requestMatchers("/api/post", "/api/person").hasRole("PERSON")
-                .anyRequest().permitAll()
+                .requestMatchers( "/api/post", "/api/person").hasRole("PERSON")
+                .requestMatchers("/", "/login", "/register", "/inputPage").permitAll()
 
                 .and()
                 .formLogin()
                 .loginPage("/login")
+
+                .and()
+                .formLogin()
+                .loginPage("/login")
+                .defaultSuccessUrl("/api/post")
 
                 .and()
                 .logout()

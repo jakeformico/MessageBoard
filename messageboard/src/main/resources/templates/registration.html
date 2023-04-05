@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Midterm 2</title>
+  </head>
+  
+  <body>
+    <h1>Register</h1>
+    
+    <form method="POST" th:action="@{/register}" id="registerForm">
+    
+        <label for="email">Email: </label>
+        <input type="text" name="email"/><br/>
+
+        <label for="password">Password: </label>
+        <input type="password" name="password"/><br/>
+
+        <label for="confirm">Confirm password: </label>
+        <input type="password" name="confirm"/><br/>
+
+        <label for="firstName">FirstName: </label>
+        <input type="text" name="firstName"/><br/>
+
+        <label for="lastName">LastName: </label>
+        <input type="text" name="lastName"/><br/>
+    
+        <input type="submit" value="Register"/>
+    </form>
+    
+  </body>
+</html>
