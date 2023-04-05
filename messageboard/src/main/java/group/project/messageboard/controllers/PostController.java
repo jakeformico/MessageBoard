@@ -57,4 +57,18 @@ public class PostController {
         return postRepository.getCalendarView(today);
     }
 
+    @PutMapping("/approve/{id}")
+    public Post approvePostById(@PathVariable Long id) {
+        Optional<Post> foundPost = postRepository.findById(id);
+        foundPost.get().setApproved(true);
+        return postRepository.save(foundPost.get());
+    }
+
+    @PutMapping("/reject/{id}")
+    public Post rejectPostById(@PathVariable Long id) {
+        Optional<Post> foundPost = postRepository.findById(id);
+        foundPost.get().setApproved(false);
+        return postRepository.save(foundPost.get());
+    }
+
 }
