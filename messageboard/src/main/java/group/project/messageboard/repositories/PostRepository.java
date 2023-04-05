@@ -23,6 +23,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
         return this.save(existingPost);
     }
 
-    @Query("SELECT p FROM Post p WHERE p.isApproved = true AND p.dateOfExpiration > :today")
+    @Query("SELECT p.id, p.title, p.dateOfEvent FROM Post p WHERE p.isApproved = true AND p.dateOfExpiration > :today")
     Iterable<Post> getCalendarView(LocalDate today);
 }
