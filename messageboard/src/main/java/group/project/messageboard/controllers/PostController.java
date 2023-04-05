@@ -1,74 +1,63 @@
 package group.project.messageboard.controllers;
 
-import java.time.LocalDate;
-import java.util.Optional;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import group.project.messageboard.models.Post;
-import group.project.messageboard.repositories.PostRepository;
+import group.project.messageboard.services.PostService;
 
 @RestController
 @RequestMapping("/api/post")
 public class PostController {
 
-    private final PostRepository postRepository;
+    private final PostService postService;
 
-    public PostController(PostRepository postRepository) {
-        this.postRepository = postRepository;
+    public PostController(PostService postService) {
+        this.postService = postService;
     }
 
     @GetMapping
-    public Iterable<Post> getAllPersons() {
-        return postRepository.findAll();
+    public Iterable<Post> getAllPosts() {
+        return postService.getAllPosts();
     }
 
     @PostMapping(value="/create")
     @ResponseStatus(HttpStatus.CREATED)
     public Post createPost(@RequestBody Post post) {
-        return postRepository.save(post);
+        return postService.createPost(post);
     }
 
     @PutMapping("/{id}")
-    public Post updatePostyId(@PathVariable Long id, @RequestBody Post post) {
-        Optional<Post> foundPost = postRepository.findById(id);
-        return postRepository.updatePost(foundPost.get(), post);
+    public Post updatePostById(@PathVariable Long id, @RequestBody Post post) {
+        return postService.updatePostById(id, post);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deletePost(@PathVariable Long id)
-    {
-        postRepository.deleteById(id);
+    public ResponseEntity deletePost(@PathVariable Long id) {
+        postService.deletePost(id);
         return new ResponseEntity<>(HttpStatusCode.valueOf(200));
     }
 
     @GetMapping("/{id}")
-    public Post getById(@PathVariable Long id)
-    {
-        return postRepository.findById(id).get();
+    public Post getById(@PathVariable Long id) {
+        return postService.getById(id);
     }
 
     @GetMapping("/calendarView")
     public Iterable<Post> getCalendarView() {
-        LocalDate today = LocalDate.now();
-        return postRepository.getCalendarView(today);
+        return postService.getCalendarView();
     }
 
     @PutMapping("/approve/{id}")
     public Post approvePostById(@PathVariable Long id) {
-        Optional<Post> foundPost = postRepository.findById(id);
-        foundPost.get().setApproved(true);
-        return postRepository.save(foundPost.get());
+        return postService.approvePostById(id);
     }
 
     @PutMapping("/reject/{id}")
     public Post rejectPostById(@PathVariable Long id) {
-        Optional<Post> foundPost = postRepository.findById(id);
-        foundPost.get().setApproved(false);
-        return postRepository.save(foundPost.get());
+        return postService.rejectPostById(id);
     }
 
 }
