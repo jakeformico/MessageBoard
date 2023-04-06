@@ -25,4 +25,15 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     @Query("SELECT p.id, p.title, p.dateOfEvent FROM Post p WHERE p.isApproved = true AND p.dateOfExpiration > :today")
     Iterable<Post> getCalendarView(LocalDate today);
+
+    @Query("SELECT p FROM Post p WHERE p.isApproved = true")
+    Iterable<Post> getApprovedPosts();
+
+    Iterable<Post> findByPersonId(Long personId);
+
+    @Query("SELECT p FROM Post p JOIN p.person pe WHERE pe.id = :personId")
+    Iterable<Post> getPostStatusByPersonId(Long personId);
+
+    @Query("SELECT p.title, p.person, p.rejectionComments FROM Post p WHERE p.isApproved = false")
+    Iterable<Post> getDenialReport();
 }

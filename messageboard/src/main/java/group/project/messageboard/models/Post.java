@@ -37,4 +37,6 @@ public class Post {
     private LocalDate dateOfEvent;
 
     private LocalDate dateOfExpiration;
+
+    private String rejectionComments;
 }

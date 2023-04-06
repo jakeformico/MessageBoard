@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import group.project.messageboard.models.Person;
 import group.project.messageboard.models.Post;
 import group.project.messageboard.repositories.PostRepository;
 
@@ -50,6 +51,11 @@ public class PostService {
         LocalDate today = LocalDate.now();
         return postRepository.getCalendarView(today);
     }
+
+    public Iterable<Post> getApprovedPosts() {
+        return postRepository.getApprovedPosts();
+    }
+
     
     public Post approvePostById(Long id) {
         Optional<Post> foundPost = postRepository.findById(id);
@@ -61,6 +67,14 @@ public class PostService {
         Optional<Post> foundPost = postRepository.findById(id);
         foundPost.get().setApproved(false);
         return postRepository.save(foundPost.get());
+    }
+
+    public Iterable<Post> getPostStatusByPersonId(Long id) {
+        return postRepository.getPostStatusByPersonId(id);
+    }
+
+    public Iterable<Post> denialReport() {
+        return postRepository.getDenialReport();
     }
 
 }

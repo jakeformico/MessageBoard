@@ -66,4 +66,25 @@ public class PostController {
         return postService.rejectPostById(id);
     }
 
+    @GetMapping("/approvedPosts")
+    public Iterable<Post> getApprovedPosts() {
+        return postService.getApprovedPosts();
+    }
+
+    @GetMapping("/postStatusByPersonId/{personId}")
+    public Iterable<Post> postStatusByPersonId(@PathVariable Long personId) {
+        return postService.getPostStatusByPersonId(personId);
+    }
+
+    @GetMapping("/postStatusById/{postId}")
+    public String postStatusByPostId(@PathVariable Long postId) {
+        Post foundPost =  postService.getById(postId);
+        return foundPost.isApproved() ? "Approved" : "Waiting for approval";
+    }
+
+    @GetMapping("/denialReport")
+    public Iterable<Post> denialReport() {
+        return postService.denialReport();
+    }
+
 }

@@ -5,8 +5,9 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import group.project.messageboard.models.Feed;
+import group.project.messageboard.models.*;
 import group.project.messageboard.services.FeedService;
+import group.project.messageboard.services.PostService;
 
 @RestController
 @RequestMapping("/api/feed")
@@ -30,8 +31,8 @@ public class FeedController {
     }
 
     @PutMapping("/{id}")
-    public Feed updateById(@PathVariable Long id, @RequestBody Feed post) {
-        return feedService.updateById(id, post);
+    public Feed updateById(@PathVariable Long id, @RequestBody Feed feed) {
+        return feedService.updateById(id, feed);
     }
 
     @DeleteMapping("/{id}")
@@ -43,6 +44,16 @@ public class FeedController {
     @GetMapping("/{id}")
     public Feed getById(@PathVariable Long id) {
         return feedService.getById(id);
+    }
+
+    @PutMapping("/startFeed/{id}")
+    public Feed startFeed(@PathVariable Long id) {
+        return feedService.setRolling(id);
+    }
+
+    @PostMapping("/addPost/{feedId}/{postId}")
+    public Feed addPostToFeed(@PathVariable Long feedid, @PathVariable Long postId) {
+        return feedService.addPostToFeed(feedid, postId);
     }
 
 }
