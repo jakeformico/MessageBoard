@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -20,21 +21,18 @@ public class Feed {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @Column(nullable = false)
+    
     private boolean isRolling;
 
-    @Column(nullable = false)
     private long duration;
 
-    @Column(nullable = false)
+    @Nonnull
     private LocalDate shutoffDateTime;
 
-    @Column(nullable = false)
     private LocalDate currentDateTime;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @Size(min = 1, max = 10)
+    @Size(min = 0, max = 10)
     private List<Post> contentList = new ArrayList<>();
 
     public void addContent(Post content) {
