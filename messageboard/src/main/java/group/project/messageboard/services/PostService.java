@@ -21,11 +21,19 @@ public class PostService {
         return postRepository.findAll();
     }
     
-    public Post createPost(Post post) {
+    public Post createPost(Post post) throws Exception {
+    	// OCL 3
+    	if (post.getDateOfExpiration().isBefore(LocalDate.now()))
+    		throw new Exception("Expiration date cannot be before today.");
+    	
         return postRepository.save(post);
     }
     
-    public Post updatePostById(Long id, Post post) {
+    public Post updatePostById(Long id, Post post) throws Exception {
+    	// OCL 3
+    	if (post.getDateOfExpiration().isBefore(LocalDate.now()))
+    		throw new Exception("Expiration date cannot be before today.");
+    	
         Optional<Post> foundPost = postRepository.findById(id);
         return postRepository.updatePost(foundPost.get(), post);
     }

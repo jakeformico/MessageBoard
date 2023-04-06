@@ -20,7 +20,11 @@ public class FeedService {
         return feedRepository.findAll();
     }
     
-    public Feed create(Feed feed) {
+    public Feed create(Feed feed) throws Exception {
+    	// OCL 2
+    	if (feed.getContentList().size() > 10)
+    		throw new Exception("Content list is limited to no more than 10.");
+    	
         return feedRepository.save(feed);
     }
     

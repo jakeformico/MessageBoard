@@ -29,14 +29,14 @@ public class PostController {
 
     @PostMapping(value="/create/{personId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post createPost(@RequestBody Post post, @PathVariable Long personId) {
+    public Post createPost(@RequestBody Post post, @PathVariable Long personId) throws Exception {
         Person foundPerson = personService.getById(personId);
         post.setPerson(foundPerson);
         return postService.createPost(post);
     }
 
     @PutMapping("/{id}")
-    public Post updatePostById(@PathVariable Long id, @RequestBody Post post) {
+    public Post updatePostById(@PathVariable Long id, @RequestBody Post post) throws Exception {
         return postService.updatePostById(id, post);
     }
 

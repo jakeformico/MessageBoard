@@ -25,7 +25,7 @@ public class FeedController {
 
     @PostMapping(value="/create")
     @ResponseStatus(HttpStatus.CREATED)
-    public Feed create(@RequestBody Feed feed) {
+    public Feed create(@RequestBody Feed feed) throws Exception {
         return feedService.create(feed);
     }
 
