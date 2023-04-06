@@ -52,8 +52,8 @@ public class FeedController {
     }
 
     @PostMapping("/addPost/{feedId}/{postId}")
-    public Feed addPostToFeed(@PathVariable Long feedid, @PathVariable Long postId) {
-        return feedService.addPostToFeed(feedid, postId);
+    public Feed addPostToFeed(@PathVariable Long feedId, @PathVariable Long postId) {
+        return feedService.addPostToFeed(feedId, postId);
     }
 
 }

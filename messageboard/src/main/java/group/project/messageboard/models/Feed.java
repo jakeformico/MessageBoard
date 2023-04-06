@@ -32,7 +32,7 @@ public class Feed {
     private LocalDate currentDateTime;
 
     @OneToMany(cascade = CascadeType.ALL)
-    @Size(min = 1, max = 10)
+    @Size(min = 0, max = 10)
     private List<Post> contentList = new ArrayList<>();
 
     public void addContent(Post content) {

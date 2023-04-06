@@ -44,9 +44,9 @@ public class SecurityConfig {
         return http
                 .csrf().disable() // Todo: Try to see if this works for testing
                 .authorizeHttpRequests()
-                .requestMatchers( "/api/post", "/api/person").hasRole("PERSON")
-                .requestMatchers("/", "/login", "/register", "/inputPage").permitAll()
-
+                // .requestMatchers( "/api/post", "/api/person").hasRole("PERSON")              //UNCOMMENT
+                // .requestMatchers("/", "/login", "/register", "/inputPage").permitAll()       //UNCOMMENT
+                .anyRequest().permitAll()                                                    //COMMMENT THIS
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -60,10 +60,10 @@ public class SecurityConfig {
                 .logout()
                 .logoutSuccessUrl("/")
 
-                // Non-secured h2-console
-                .and()
-                .csrf()
-                .ignoringRequestMatchers("/h2-console/**")
+                // Non-secured h2-console    
+                // .and()
+                // .csrf()
+                // .ignoringRequestMatchers("/h2-console/**")
 
                 // Allow pages to be loaded in frames from the same origin; needed for
                 // H2-Console
