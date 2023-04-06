@@ -87,4 +87,16 @@ public class PostController {
         return postService.denialReport();
     }
 
+    @GetMapping("/addPostToCalendar/{postId}")
+    public String addPostToCalendar(@PathVariable Long postId) {
+        postService.approvePostById(postId);
+        return "Successfully added post with ID: " + postId + " to Calendar";
+    }
+
+    @GetMapping("/removePostFromCalendar/{postId}")
+    public String removePostFromCalendar(@PathVariable Long postId) {
+        postService.rejectPostById(postId);
+        return "Successfully removed post with ID: " + postId + " from Calendar";
+    }
+
 }
