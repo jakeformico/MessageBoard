@@ -7,7 +7,6 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import PostPage from './components/posts/PostPage';
 import PersonPage from './components/users/PersonPage';
-import { Feed } from './components/Feed';
 import { MonitorView } from './components/MonitorView';
 import Login from './components/security/Login';
 import Logout from './components/security/Logout';
@@ -24,7 +23,6 @@ function App() {
             <Route exact path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/logout" element={<Logout/>} />
-            <Route path="/feed" element={<Feed/>} />
             <Route path="/monitor" element={<MonitorView/>}/>
             <Route path="/register" element={<Register/>} />
             <Route path="/posts" element={<PostPage/>} />
