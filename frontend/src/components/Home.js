@@ -1,19 +1,18 @@
 import React from 'react'
-//import { GlobalProvider } from '../context/GlobalState';
-import Carousel from 'react-bootstrap/Carousel';
 
-const Home = ({courses, setCourse}) => {
+const Home = () => {
   return (
-    // <GlobalProvider>
       <div className={'main-page'}>
         <div className={'panel-group'}>
           <div className={'panel'}>
             <h1>CSI 5324 Message Board</h1><br /><br />
             
+            <h2>Have an account? Sign in here!</h2>
+
+            <h3>Otherwise, register here!</h3>
           </div>
         </div>
       </div>
-    //</GlobalProvider>
   )
 
 }
