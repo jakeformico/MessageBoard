@@ -44,9 +44,9 @@ public class SecurityConfig {
         return http
                 .csrf().disable() // Todo: Try to see if this works for testing
                 .authorizeHttpRequests()
-                // .requestMatchers( "/api/post", "/api/person").hasRole("PERSON")              //UNCOMMENT
-                // .requestMatchers("/", "/login", "/register", "/inputPage").permitAll()       //UNCOMMENT
-                .anyRequest().permitAll()                                                    //COMMMENT THIS
+                .requestMatchers( "/api/post", "/api/person").hasRole("PERSON")              //UNCOMMENT
+                .requestMatchers("/", "/login", "/register", "/inputPage").permitAll()       //UNCOMMENT
+                //.anyRequest().permitAll()                                                    //COMMMENT THIS
                 .and()
                 .formLogin()
                 .loginPage("/login")

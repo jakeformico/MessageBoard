@@ -1,25 +1,40 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-
+import api from './api/axiosConfig';
+import {useState, useEffect} from 'react';
+import {Routes, Route, BrowserRouter as Router} from 'react-router-dom';
+import Home from './components/Home';
+import Navbar from './components/Navbar';
+import CoursePage from './components/CoursePage';
+import PostPage from './components/posts/PostPage';
+import PersonPage from './components/users/PersonPage';
+import ApplicationPage from './components/ApplicationPage';
+import Login from './components/security/Login';
+import Logout from './components/security/Logout';
+import Register from './components/security/Register';
 function App() {
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Navbar />
+        <div className="content">
+          <Routes>
+            
+            <Route exact path="/" element={<Home/>} />
+            <Route path="/login" element={<Login/>} />
+            <Route path="/logout" element={<Logout/>} />
+            <Route path="/register" element={<Register/>} />
+            {/* <Route path="/courses" element={<CoursePage/>} /> */}
+            <Route path="/post" element={<PostPage/>} />
+            <Route path="/persons" element={<PersonPage/>} />
+            <Route path="/applications" element={<ApplicationPage/>} />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
+
 }
 
 export default App;
