@@ -1,6 +1,6 @@
 import React from 'react'
 //import { GlobalProvider } from '../context/GlobalState';
-
+import Carousel from 'react-bootstrap/Carousel';
 
 const Home = ({courses, setCourse}) => {
   return (
@@ -15,9 +15,8 @@ const Home = ({courses, setCourse}) => {
       </div>
     //</GlobalProvider>
   )
+
 }
-
 export default Home
-
 
 

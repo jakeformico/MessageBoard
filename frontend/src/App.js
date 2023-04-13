@@ -26,7 +26,7 @@ function App() {
             <Route path="/logout" element={<Logout/>} />
             <Route path="/register" element={<Register/>} />
             {/* <Route path="/courses" element={<CoursePage/>} /> */}
-            <Route path="/post" element={<PostPage/>} />
+            <Route path="/posts" element={<PostPage/>} />
             <Route path="/persons" element={<PersonPage/>} />
             <Route path="/applications" element={<ApplicationPage/>} />
           </Routes>

@@ -36,12 +36,14 @@ export const PostList = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Post Status</th>
-            <th>Registered At</th>
-            <th>Person Name</th>
-            <th>Person Email</th>
-            <th>Course Code</th>
-            <th>Semester</th>
+            {/* <th>Posted By</th> */}
+            <th>Is Approved</th>
+            <th>Uploaded File</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date of Event</th>
+            <th>Date of Exp</th>
+            <th>Rejection Comments</th>
             {/* <th colspan="2"></th> */}
           </tr>
         </thead>
@@ -49,12 +51,14 @@ export const PostList = () => {
           {posts?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
-              <td>{post.coursePostStatus}</td>
-              <td>{post.registeredAt}</td>
-              <td>{post.person.firstName}</td>
-              <td>{post.person.email}</td>
-              <td>{post.course.name}</td>
-              <td>{post.course.semester}</td>
+              {/* <td>{post.person.firstName}</td> */}
+              <td>{post.isApproved}</td>
+              <td>{post.uploadedFile}</td>
+              <td>{post.title}</td>
+              <td>{post.description}</td>
+              <td>{post.dateOfEvent}</td>
+              <td>{post.dateOfExpiration}</td>
+              <td>{post.rejectionComments}</td>
               {/* <td><button className={'btn'} type="submit">Accept</button></td>
               <td><button className={'btn'} type="submit">Reject</button></td> */}
 
