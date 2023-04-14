@@ -11,6 +11,8 @@ import { MonitorView } from './components/MonitorView';
 import Login from './components/security/Login';
 import Logout from './components/security/Logout';
 import Register from './components/security/Register';
+import { PostList } from './components/posts/PostList';
+import AddPost from './components/posts/AddPost';
 function App() {
   
   return (
@@ -25,7 +27,8 @@ function App() {
             <Route path="/logout" element={<Logout/>} />
             <Route path="/monitor" element={<MonitorView/>}/>
             <Route path="/register" element={<Register/>} />
-            <Route path="/posts" element={<PostPage/>} />
+            <Route path="/postList" element={<PostList/>} />
+            <Route path="/addPost" element={<AddPost/>} />
             <Route path="/persons" element={<PersonPage/>} />
           </Routes>
         </div>

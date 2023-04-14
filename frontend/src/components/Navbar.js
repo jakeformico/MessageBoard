@@ -6,8 +6,8 @@ const Navbar = () => {
       <h1>Message Board</h1>
       <div className="links">
         <Link to="/">Home</Link>
-        <Link to="/posts">Posts</Link>
-    
+        <Link to="/postList">Post List</Link>
+        <Link to="/addPost">Add Post</Link>
         <Link to="/monitor">Monitor View</Link>
         <Link to="/persons">Persons</Link>
   
