@@ -31,6 +31,8 @@ const Navbar = () => {
           </Dropdown.Menu>
         </Dropdown>
         </div>
+        <Link to="/applications">Applications</Link>
+        <Link to="/feed">Feed</Link>
       </div>
     </nav>
   );
