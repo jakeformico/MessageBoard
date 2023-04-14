@@ -10,9 +10,7 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/posts">Posts</Link>
 
-        <Link to="/monitor">Monitor View</Link>
         <Link to="/persons">Persons</Link>
-        <Link to="/unverifiedposts">Unverified Posts</Link>
         <div>
         <Dropdown as={NavItem}>
           <Dropdown.Toggle as={NavLink}>Admin</Dropdown.Toggle>
@@ -31,8 +29,6 @@ const Navbar = () => {
           </Dropdown.Menu>
         </Dropdown>
         </div>
-        <Link to="/applications">Applications</Link>
-        <Link to="/feed">Feed</Link>
       </div>
     </nav>
   );

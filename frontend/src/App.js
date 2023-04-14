@@ -32,7 +32,6 @@ function App() {
             <Route path="/unverifiedposts" element={<UnverifiedPostPage/>} />
             <Route path="/denialreports" element={<DenialReportList/>} />
             <Route path="/persons" element={<PersonPage/>} />
-            <Route path="/applications" element={<ApplicationPage/>} />
             <Route path="/feed" element={<Feed2/>} />
           </Routes>
         </div>
