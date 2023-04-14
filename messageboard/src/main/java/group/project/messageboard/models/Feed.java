@@ -6,7 +6,6 @@ import java.util.List;
 
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.CascadeType;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -34,6 +33,17 @@ public class Feed {
     @OneToMany(cascade = CascadeType.ALL)
     @Size(min = 0, max = 10)
     private List<Post> contentList = new ArrayList<>();
+
+    public Feed() {
+    }
+
+    public Feed(Long id, boolean isRolling, long duration, LocalDate currentDateTime, LocalDate shutoffDateTime) {
+        this.id = id;
+        this.isRolling = isRolling;
+        this.duration = duration;
+        this.currentDateTime = currentDateTime;
+        this.shutoffDateTime = shutoffDateTime;
+    }
 
     public void addContent(Post content) {
         this.contentList.add(content);
