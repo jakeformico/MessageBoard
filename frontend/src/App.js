@@ -5,10 +5,9 @@ import {useState, useEffect} from 'react';
 import {Routes, Route, BrowserRouter as Router} from 'react-router-dom';
 import Home from './components/Home';
 import Navbar from './components/Navbar';
-import CoursePage from './components/CoursePage';
 import PostPage from './components/posts/PostPage';
 import PersonPage from './components/users/PersonPage';
-import ApplicationPage from './components/ApplicationPage';
+import { MonitorView } from './components/MonitorView';
 import Login from './components/security/Login';
 import Logout from './components/security/Logout';
 import Register from './components/security/Register';
@@ -25,9 +24,9 @@ function App() {
             <Route exact path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/logout" element={<Logout/>} />
+            <Route path="/monitor" element={<MonitorView/>}/>
             <Route path="/register" element={<Register/>} />
-            {/* <Route path="/courses" element={<CoursePage/>} /> */}
-            <Route path="/post" element={<PostPage/>} />
+            <Route path="/posts" element={<PostPage/>} />
             <Route path="/persons" element={<PersonPage/>} />
             <Route path="/applications" element={<ApplicationPage/>} />
             <Route path="/feed" element={<Feed2/>} />

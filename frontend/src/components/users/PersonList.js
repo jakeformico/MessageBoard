@@ -43,11 +43,6 @@ export const PersonList = () => {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Email</th>
-            <th>Gender</th>
-            <th>Age</th>
-            <th>DOB</th>
-            <th>Race/Ethnicity/Origin</th>
-            <th>Field of Study</th>
           </tr>
         </thead>
         <tbody>
@@ -57,11 +52,6 @@ export const PersonList = () => {
               <td>{person.firstName}</td>
               <td>{person.lastName}</td>
               <td>{person.email}</td>
-              <td>{person.gender}</td>
-              <td>{person.age}</td>
-              <td>{person.dob}</td>
-              <td>{person.race}</td>
-              <td>{person.fieldType}</td>
             </tr>
           ))}
         </tbody>

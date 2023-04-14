@@ -10,6 +10,7 @@ import group.project.messageboard.services.PersonService;
 
 @RestController
 @RequestMapping("/api/person")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PersonController {
 
     private final PersonService personService;

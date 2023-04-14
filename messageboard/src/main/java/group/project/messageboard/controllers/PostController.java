@@ -12,6 +12,7 @@ import group.project.messageboard.services.PostService;
 
 @RestController
 @RequestMapping("/api/post")
+@CrossOrigin(origins = "http://localhost:3000")
 public class PostController {
 
     private final PostService postService;

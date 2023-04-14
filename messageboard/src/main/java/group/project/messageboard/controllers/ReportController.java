@@ -10,6 +10,7 @@ import group.project.messageboard.services.ReportService;
 
 @RestController
 @RequestMapping("/api/report")
+@CrossOrigin(origins = "http://localhost:3000")
 public class ReportController {
 
     private final ReportService reportService;

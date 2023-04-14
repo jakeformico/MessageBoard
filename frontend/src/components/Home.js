@@ -1,23 +1,29 @@
 import React from 'react'
-//import { GlobalProvider } from '../context/GlobalState';
-
-
-const Home = ({courses, setCourse}) => {
+import Login from './security/Login';
+import { Link } from "react-router-dom";
+const Home = () => {
   return (
-    // <GlobalProvider>
       <div className={'main-page'}>
         <div className={'panel-group'}>
           <div className={'panel'}>
             <h1>CSI 5324 Message Board</h1><br /><br />
             
+            <h2>Have an account?</h2>
+            <Link to="./Login">Log In!</Link>
+
+            <h2>Otherwise, register here</h2>
+            <Link to="./Register">Sign up!</Link>
+           
           </div>
         </div>
       </div>
-    //</GlobalProvider>
   )
+
+
+
+
+
 }
-
 export default Home
-
 
 

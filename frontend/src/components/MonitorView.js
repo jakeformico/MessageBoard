@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import api from '../../api/axiosConfig';
+import api from './../api/axiosConfig';
 import {useState, useEffect} from 'react';
 
-export const PostList = () => {
+export const MonitorView = () => {
 
 
   const [posts, setPosts] = useState();
