@@ -44,7 +44,8 @@ public class PostService {
     }
     
     public Post getById(Long id) {
-        return postRepository.findById(id).get();
+        Optional<Post> foundPost = postRepository.findById(id);
+        return foundPost.get();
     }
     
     public Iterable<Post> getCalendarView() {
