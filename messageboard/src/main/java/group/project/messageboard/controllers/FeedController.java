@@ -11,6 +11,7 @@ import group.project.messageboard.services.PostService;
 
 @RestController
 @RequestMapping("/api/feed")
+@CrossOrigin(origins = "http://localhost:3000")
 public class FeedController {
 
     private final FeedService feedService;

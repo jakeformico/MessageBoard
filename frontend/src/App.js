@@ -12,6 +12,7 @@ import ApplicationPage from './components/ApplicationPage';
 import Login from './components/security/Login';
 import Logout from './components/security/Logout';
 import Register from './components/security/Register';
+import Feed2 from './components/feed/Feed2';
 function App() {
   
   return (
@@ -29,6 +30,7 @@ function App() {
             <Route path="/post" element={<PostPage/>} />
             <Route path="/persons" element={<PersonPage/>} />
             <Route path="/applications" element={<ApplicationPage/>} />
+            <Route path="/feed" element={<Feed2/>} />
           </Routes>
         </div>
       </div>
