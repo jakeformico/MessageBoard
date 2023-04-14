@@ -10,14 +10,26 @@ export const PostList = () => {
   const getPosts = async () =>{
     try{
       const response = await api.get("/post");
-      console.log(response.data);
       setPosts(response.data);
 
+      
     } 
     catch(err)
     {
       console.log(err);
     }
+  }
+
+  const getFileURL = (post) => {
+    const reader = new FileReader();
+    if(post.file != null)
+    {
+      const byteArray = new Uint8Array(post.file);
+      const blob = new Blob([byteArray], { type: post.file.type });
+      const url = URL.createObjectURL(blob);
+      return url;
+    }
+    
   }
 
 
@@ -38,7 +50,7 @@ export const PostList = () => {
             <th>ID</th>
             {/* <th>Posted By</th> */}
             <th>Is Approved</th>
-            <th>Uploaded File</th>
+            <th>File</th>
             <th>Title</th>
             <th>Description</th>
             <th>Date of Event</th>
@@ -53,7 +65,9 @@ export const PostList = () => {
               <td>{post.id}</td>
               {/* <td>{post.person.firstName}</td> */}
               <td>{post.isApproved}</td>
-              <td>{post.uploadedFile}</td>
+              <td><a href={getFileURL(post)} target="_blank" rel="noopener noreferrer">
+            Click to view file
+        </a></td>
               <td>{post.title}</td>
               <td>{post.description}</td>
               <td>{post.dateOfEvent}</td>
