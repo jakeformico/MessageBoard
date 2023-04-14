@@ -44,4 +44,6 @@ public class Post {
     private LocalDate dateOfExpiration;
 
     private String rejectionComments;
+
+    private String contentType;
 }

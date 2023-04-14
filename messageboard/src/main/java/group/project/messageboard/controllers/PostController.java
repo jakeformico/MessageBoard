@@ -1,5 +1,7 @@
 package group.project.messageboard.controllers;
 
+import java.io.Console;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -36,6 +38,7 @@ public class PostController {
         Post post = new Post();
         post.setPerson(foundPerson);
         post.setFile(postWrapper.getFile().getBytes());
+        post.setContentType(postWrapper.getFile().getContentType());
         post.setDateOfEvent(postWrapper.getDateOfEvent());
         post.setDateOfExpiration(postWrapper.getDateOfExpiration());
         post.setDescription(postWrapper.getDescription());
