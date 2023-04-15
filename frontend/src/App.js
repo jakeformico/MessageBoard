@@ -14,6 +14,7 @@ import Login from './components/security/Login';
 import Logout from './components/security/Logout';
 import Register from './components/security/Register';
 import Feed2 from './components/feed/Feed2';
+import Calendar from './components/calendar/Calendar';
 function App() {
   
   return (
@@ -22,7 +23,6 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
-            
             <Route exact path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/logout" element={<Logout/>} />
@@ -33,6 +33,7 @@ function App() {
             <Route path="/denialreports" element={<DenialReportList/>} />
             <Route path="/persons" element={<PersonPage/>} />
             <Route path="/feed" element={<Feed2/>} />
+            <Route path="/calendar" element={<Calendar/>} />
           </Routes>
         </div>
       </div>

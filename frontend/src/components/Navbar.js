@@ -9,7 +9,7 @@ const Navbar = () => {
       <div className="links">
         <Link to="/">Home</Link>
         <Link to="/posts">Posts</Link>
-
+        <Link to="/calendar">Calendar</Link>
         <Link to="/persons">Persons</Link>
         <div>
         <Dropdown as={NavItem}>
