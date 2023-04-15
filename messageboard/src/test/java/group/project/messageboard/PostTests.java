@@ -189,7 +189,7 @@ public class PostTests {
         updatedPost.setApproved(false);
 
 		given(postService.getById(postId)).willReturn(savedPost);
-		given(postService.rejectPostById(postId)).willReturn(updatedPost);
+		given(postService.rejectPostById(anyLong(), anyString())).willReturn(updatedPost);
 
 		ResultActions response = mockMvc.perform(put("/api/post/reject/{id}", postId));
 
@@ -285,7 +285,7 @@ public class PostTests {
 		post.setDateOfEvent(LocalDate.parse("2023-04-13"));
 		post.setDateOfExpiration(LocalDate.parse("2023-04-17"));
 
-		given(postService.rejectPostById(postId)).willReturn(post);
+		given(postService.rejectPostById(anyLong(), anyString())).willReturn(post);
 
 		ResultActions response = mockMvc.perform(get("/api/post/removePostFromCalendar/{postId}", postId));
 
