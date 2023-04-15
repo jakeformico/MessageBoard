@@ -3,6 +3,8 @@ package group.project.messageboard.models;
 import java.time.LocalDate;
 import java.util.Date;
 
+import org.hibernate.annotations.Type;
+
 import jakarta.annotation.Nonnull;
 import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
@@ -33,7 +35,7 @@ public class Post {
     private byte[] file;
 
     private String description;
-
+    private boolean isApproved;
     @Nonnull
     private String title;
 
