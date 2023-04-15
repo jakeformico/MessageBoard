@@ -15,7 +15,9 @@ import Register from './components/security/Register';
 import { PostList } from './components/posts/PostList';
 import AddPost from './components/posts/AddPost';
 import Feed2 from './components/feed/Feed2';
+import Calendar from './components/calendar/Calendar';
 import FacultyEditPost from './components/posts/FacultyEditPost';
+
 function App() {
   
   return (
@@ -24,7 +26,6 @@ function App() {
         <Navbar />
         <div className="content">
           <Routes>
-            
             <Route exact path="/" element={<Home/>} />
             <Route path="/login" element={<Login/>} />
             <Route path="/logout" element={<Logout/>} />
@@ -36,6 +37,7 @@ function App() {
             <Route path="/denialreports" element={<DenialReportList/>} />
             <Route path="/persons" element={<PersonPage/>} />
             <Route path="/feed" element={<Feed2/>} />
+            <Route path="/calendar" element={<Calendar/>} />
             <Route path="/facultyEditPost" element={<FacultyEditPost/>} />
           </Routes>
         </div>

@@ -74,6 +74,16 @@ code {
   padding: 10px;
 }
 
+.calendar {
+  background-color: #008000;
+  color: #FFBB28
+}
+
+.calendarTitle {
+  background-color: #008000;
+  color: #FFBB28
+}
+
 .post-title{
 
   color: #008000;
@@ -87,6 +97,7 @@ code {
   /* font-size: calc(10px + 2vmin); */
  
 }
+
 
 /* table{
   width: 1400px;
