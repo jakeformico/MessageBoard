@@ -28,8 +28,6 @@ public class Post {
     @ManyToOne(cascade = CascadeType.MERGE)
     private Person person;
 
-    private boolean isApproved;
-
     @Lob
     @Basic(fetch = FetchType.LAZY)
     private byte[] file;
@@ -46,4 +44,10 @@ public class Post {
     private String rejectionComments;
 
     private String contentType;
+
+    private Status status = Status.Pending;
+
+    public enum Status{
+        Pending, Approved, Denied
+    }
 }

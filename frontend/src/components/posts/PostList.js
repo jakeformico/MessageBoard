@@ -48,7 +48,7 @@ export const PostList = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Is Approved</th>
+            <th>Status</th>
             <th>File</th>
             <th>File Type</th>
             <th>Title</th>
@@ -63,7 +63,7 @@ export const PostList = () => {
           {posts?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
-              <td>{post.isApproved ? "ACCEPTED" : "PENDING"}</td>
+              <td>{post.status}</td>
               <td>
                 <a href={base64toFile(post.file, post.contentType)} target="_blank" rel="noopener noreferrer">
                   Click to view file

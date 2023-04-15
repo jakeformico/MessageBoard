@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import group.project.messageboard.models.Person;
 import group.project.messageboard.models.Post;
+import group.project.messageboard.models.Post.Status;
 import group.project.messageboard.repositories.PostRepository;
 
 @Service
@@ -60,13 +61,15 @@ public class PostService {
     
     public Post approvePostById(Long id) {
         Optional<Post> foundPost = postRepository.findById(id);
-        foundPost.get().setApproved(true);
+        foundPost.get().setStatus(Status.Approved);
+        foundPost.get().setRejectionComments(null);
         return postRepository.save(foundPost.get());
     }
     
-    public Post rejectPostById(Long id) {
+    public Post rejectPostById(Long id, String rejectionComments) {
         Optional<Post> foundPost = postRepository.findById(id);
-        foundPost.get().setApproved(false);
+        foundPost.get().setStatus(Status.Denied);        
+        foundPost.get().setRejectionComments(rejectionComments);
         return postRepository.save(foundPost.get());
     }
 

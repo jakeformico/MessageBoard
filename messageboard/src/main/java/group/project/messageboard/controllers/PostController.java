@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import group.project.messageboard.models.Person;
 import group.project.messageboard.models.Post;
 import group.project.messageboard.models.PostWrapper;
+import group.project.messageboard.models.Post.Status;
 import group.project.messageboard.services.PersonService;
 import group.project.messageboard.services.PostService;
 
@@ -43,6 +44,7 @@ public class PostController {
         post.setDateOfExpiration(postWrapper.getDateOfExpiration());
         post.setDescription(postWrapper.getDescription());
         post.setTitle(postWrapper.getTitle());
+        post.setStatus(Status.Pending);
         return postService.createPost(post);
     }
 
@@ -74,9 +76,9 @@ public class PostController {
         return postService.approvePostById(id);
     }
 
-    @PutMapping("/reject/{id}")
-    public Post rejectPostById(@PathVariable Long id) {
-        return postService.rejectPostById(id);
+    @PutMapping("/reject/{id}/{rejectionComments}")
+    public Post rejectPostById(@PathVariable Long id, @PathVariable String rejectionComments) {
+        return postService.rejectPostById(id, rejectionComments);
     }
 
     @GetMapping("/approvedPosts")
@@ -92,7 +94,7 @@ public class PostController {
     @GetMapping("/postStatusById/{postId}")
     public String postStatusByPostId(@PathVariable Long postId) {
         Post foundPost =  postService.getById(postId);
-        return foundPost.isApproved() ? "Approved" : "Waiting for approval";
+        return foundPost.getStatus().toString();
     }
 
     @GetMapping("/denialReport")
@@ -108,7 +110,7 @@ public class PostController {
 
     @GetMapping("/removePostFromCalendar/{postId}")
     public String removePostFromCalendar(@PathVariable Long postId) {
-        postService.rejectPostById(postId);
+        postService.rejectPostById(postId, "Rejected from calendar");
         return "Successfully removed post with ID: " + postId + " from Calendar";
     }
 
