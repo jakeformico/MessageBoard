@@ -13,21 +13,14 @@ export const DenialReportList = () => {
   const [approved, setApproved] = useState(false);
   const [id, setId] = useState();
   const [posts, setPosts] = useState();
-  // const [isApproved, setIsApproved] = useState(true);
 
   const getPosts = async () => {
-    //e.preventDefault();
 
     try {
-      const response = await api.get("/post");
+      const response = await api.get("/post/denialReport");
       console.log(response.data);
       setPosts(response.data);
 
-      // setPosts();
-      // const response = await api.get("/post/" + byPostId);
-      // console.log(response.data);
-      // setPosts([response.data]);
-      setByPostId(0);
     } catch (err) {
       console.log(err);
     }
@@ -38,37 +31,45 @@ export const DenialReportList = () => {
   }, []);
 
 
+  function base64toFile(file, contentType) {
+    const binaryString = atob(file);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const blob = new Blob([bytes], { type: contentType });
+    return URL.createObjectURL(blob);
+  }
+
 
   return (
-    <>
-      <div className="admin-container">
-        <div className="admin-input">
-          <h3>Deny Posts:</h3>
-          <div className="bootstrap-form">
-            <Form onSubmit={getPosts}>
-              <Form.Group>
-                <Form.Label>Post ID:</Form.Label>
-                <Form.Control
-                  type="number"
-                  value={byPostId}
-                  onChange={(e) => setByPostId(e.target.value)}
-                  placeholder="0"
-                />
-                <Form.Text className="text-muted">
-                  Enter post ID for a post or 0 for all posts.
-                </Form.Text>
-              </Form.Group>
-              <Button variant="success" type="submit">
-                Submit
-              </Button>
-            </Form>
-          </div>
-        </div>
-
-        <div className="admin-content">
-          <UnverifiedPostList posts={posts} />
+    <div className="admin-container">
+      <div className="admin-input">
+        <h3>Deny Posts:</h3>
+        <div>
+          <h3>Denial Report:</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Title</th>               
+                <th>Status</th>
+                <th>Rejection Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              {posts?.map((post) => (
+                <tr key={post.id}>
+                  <td>{post[1]} {post[2]}</td>
+                  <td>{post[0]}</td>
+                  <td>{post[3]}</td>
+                  <td>{post[4]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </div>
-    </>
+    </div>
   );
 };

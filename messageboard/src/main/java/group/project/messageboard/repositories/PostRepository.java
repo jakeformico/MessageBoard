@@ -42,6 +42,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     @Query("SELECT p FROM Post p JOIN p.person pe WHERE pe.id = :personId")
     Iterable<Post> getPostStatusByPersonId(Long personId);
 
-    @Query("SELECT p.title, p.person, p.rejectionComments FROM Post p WHERE p.status = 2")
+    @Query("SELECT p.title, p.person.firstName, p.person.lastName, p.status, p.rejectionComments FROM Post p WHERE p.status = 2")
     Iterable<Post> getDenialReport();
 }
