@@ -10,11 +10,8 @@ const Navbar = () => {
         <Link to="/">Home</Link>
         <Link to="/postList">Post List</Link>
         <Link to="/addPost">Add Post</Link>
-        <Link to="/monitor">Monitor View</Link>
         <Link to="/persons">Persons</Link>
-  
 
-        <Link to="/persons">Persons</Link>
         <div>
         <Dropdown as={NavItem}>
           <Dropdown.Toggle as={NavLink}>Admin</Dropdown.Toggle>
