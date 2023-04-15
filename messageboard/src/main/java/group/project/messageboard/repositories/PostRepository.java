@@ -12,14 +12,22 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     public default Post updatePost(Post existingPost, Post newPost)
     {
-        existingPost.setTitle(newPost.getTitle());
-        existingPost.setDateOfEvent(newPost.getDateOfEvent());
-        existingPost.setApproved(newPost.isApproved());
-        existingPost.setCreatedAt(newPost.getCreatedAt());
-        existingPost.setPerson(newPost.getPerson());
-        existingPost.setDateOfExpiration(newPost.getDateOfExpiration());
-        existingPost.setDescription(newPost.getDescription());
-        existingPost.setFile(newPost.getFile());
+        if(newPost.getTitle() != null)
+            existingPost.setTitle(newPost.getTitle());
+        if(newPost.getDateOfEvent() != null)
+            existingPost.setDateOfEvent(newPost.getDateOfEvent());
+        if(newPost.isApproved() != existingPost.isApproved())
+            existingPost.setApproved(newPost.isApproved());
+        if(newPost.getCreatedAt() != null)
+            existingPost.setCreatedAt(newPost.getCreatedAt());
+        if(newPost.getPerson() != null)
+            existingPost.setPerson(newPost.getPerson());
+        if(newPost.getDateOfExpiration() != null)
+            existingPost.setDateOfExpiration(newPost.getDateOfExpiration());
+        if(newPost.getDescription() != null)
+            existingPost.setDescription(newPost.getDescription());
+        if(newPost.getFile() != null)
+            existingPost.setFile(newPost.getFile());
         return this.save(existingPost);
     }
 

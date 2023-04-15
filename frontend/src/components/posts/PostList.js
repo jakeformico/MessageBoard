@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import api from '../../api/axiosConfig';
 import {useState, useEffect} from 'react';
+import { Link } from "react-router-dom";
 
 export const PostList = () => {
 
@@ -55,13 +56,14 @@ export const PostList = () => {
             <th>Date of Event</th>
             <th>Date of Exp</th>
             <th>Rejection Comments</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
           {posts?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
-              <td>{post.isApproved}</td>
+              <td>{post.isApproved ? "ACCEPTED" : "PENDING"}</td>
               <td>
                 <a href={base64toFile(post.file, post.contentType)} target="_blank" rel="noopener noreferrer">
                   Click to view file
@@ -73,8 +75,7 @@ export const PostList = () => {
               <td>{post.dateOfEvent}</td>
               <td>{post.dateOfExpiration}</td>
               <td>{post.rejectionComments}</td>
-              {/* <td><button className={'btn'} type="submit">Accept</button></td>
-              <td><button className={'btn'} type="submit">Reject</button></td> */}
+              <td><Link to={"/facultyEditPost?postId="+post.id}>Edit</Link></td>
             </tr>
           ))}
         </tbody>

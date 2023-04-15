@@ -15,6 +15,7 @@ import Register from './components/security/Register';
 import { PostList } from './components/posts/PostList';
 import AddPost from './components/posts/AddPost';
 import Feed2 from './components/feed/Feed2';
+import FacultyEditPost from './components/posts/FacultyEditPost';
 function App() {
   
   return (
@@ -35,6 +36,7 @@ function App() {
             <Route path="/denialreports" element={<DenialReportList/>} />
             <Route path="/persons" element={<PersonPage/>} />
             <Route path="/feed" element={<Feed2/>} />
+            <Route path="/facultyEditPost" element={<FacultyEditPost/>} />
           </Routes>
         </div>
       </div>
