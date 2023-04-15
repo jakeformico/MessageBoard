@@ -1,92 +1,75 @@
-import React, { useContext } from 'react';
-import api from '../../api/axiosConfig';
-import {useState, useEffect} from 'react';
-import Accordion from 'react-bootstrap/Accordion';
+import React from "react";
+import api from "../../api/axiosConfig";
+import { UnverifiedPostList } from "./UnverifiedPostList";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import "bootstrap/dist/css/bootstrap.css";
+import { useState, useEffect } from "react";
+import ListGroup from "react-bootstrap/ListGroup";
+import { DenyUnverifiedPost } from "./DenyUnverifiedPost";
+
 export const DenialReportList = () => {
-
-
+  const [byPostId, setByPostId] = useState(0);
+  const [status, setStatus] = useState(false);
+  const [id, setId] = useState();
   const [posts, setPosts] = useState();
 
-  const getPosts = async () =>{
-    try{
+  const getPosts = async () => {
+
+    try {
       const response = await api.get("/post/denialReport");
       console.log(response.data);
       setPosts(response.data);
 
-    } 
-    catch(err)
-    {
+    } catch (err) {
       console.log(err);
     }
+  };
+
+  useEffect(() => {
+    getPosts();
+  }, []);
+
+
+  function base64toFile(file, contentType) {
+    const binaryString = atob(file);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const blob = new Blob([bytes], { type: contentType });
+    return URL.createObjectURL(blob);
   }
 
 
-  useEffect(() => {
-    //Uses react hhooks to make HTTP request
-    getPosts();
-
-  },[])
- 
-
-
   return (
-    <div>
-      <h1>Denial Reports</h1>
-      {posts?.map((post) => (
-    <Accordion defaultActiveKey="0" flush>
-    
-    <Accordion.Item eventKey= "0">
-      <Accordion.Header>{post.title}</Accordion.Header>
-      <Accordion.Body>
+    <div className="admin-container">
+      <div className="admin-input">
+        <h3>Deny Posts:</h3>
         <div>
-          Reason for Denial: {post.rejectionComments}
+          <h3>Denial Report:</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Author</th>
+                <th>Title</th>               
+                <th>Status</th>
+                <th>Rejection Comments</th>
+              </tr>
+            </thead>
+            <tbody>
+              {posts?.map((post) => (
+                <tr key={post.id}>
+                  <td>{post[1]} {post[2]}</td>
+                  <td>{post[0]}</td>
+                  <td>{post[3]}</td>
+                  <td>{post[4]}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-
-      </Accordion.Body>
-    </Accordion.Item>
-
-
-  </Accordion>
-))}
+      </div>
     </div>
-
-  
-    // <div>
-    //   <h3>Past Posts:</h3>
-    //   <table>
-    //     <thead>
-    //       <tr>
-    //         <th>ID</th>
-    //         {/* <th>Posted By</th> */}
-    //         <th>Is Approved</th>
-    //         <th>Uploaded File</th>
-    //         <th>Title</th>
-    //         <th>Description</th>
-    //         <th>Date of Event</th>
-    //         <th>Date of Exp</th>
-    //         <th>Rejection Comments</th>
-    //         {/* <th colspan="2"></th> */}
-    //       </tr>
-    //     </thead>
-    //     <tbody>
-    //       {posts?.map((post) => (
-    //         <tr key={post.id}>
-    //           <td>{post.id}</td>
-    //           {/* <td>{post.person.firstName}</td> */}
-    //           <td>{post.isApproved}</td>
-    //           <td>{post.uploadedFile}</td>
-    //           <td>{post.title}</td>
-    //           <td>{post.description}</td>
-    //           <td>{post.dateOfEvent}</td>
-    //           <td>{post.dateOfExpiration}</td>
-    //           <td>{post.rejectionComments}</td>
-    //           {/* <td><button className={'btn'} type="submit">Accept</button></td>
-    //           <td><button className={'btn'} type="submit">Reject</button></td> */}
-
-    //         </tr>
-    //       ))}
-    //     </tbody>
-    //   </table>
-    // </div>
   );
-}
+};

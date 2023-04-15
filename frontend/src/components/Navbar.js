@@ -5,12 +5,15 @@ import NavLink from "react-bootstrap/NavLink";
 const Navbar = () => {
   return (
     <nav className="navbar">
+      <img src="/QrCode.png" style={{marginRight: '10px'}}/>
       <h1>Message Board</h1>
       <div className="links">
         <Link to="/">Home</Link>
-        <Link to="/posts">Posts</Link>
         <Link to="/calendar">Calendar</Link>
+        <Link to="/postList">Post List</Link>
+        <Link to="/addPost">Add Post</Link>
         <Link to="/persons">Persons</Link>
+
         <div>
         <Dropdown as={NavItem}>
           <Dropdown.Toggle as={NavLink}>Admin</Dropdown.Toggle>

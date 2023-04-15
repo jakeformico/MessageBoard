@@ -10,79 +10,99 @@ import Form from "react-bootstrap/Form";
 
 export const UnverifiedPostList = ({ posts }) => {
   // const [posts, setPosts] = useState();
-  const [approved, setApproved] = useState(false);
+  const [status, setStatus] = useState();
   const [id, setId] = useState();
-  
+
   console.log(posts);
-  // const handleChange = async () =>{
 
-  //   console.log("checked box");
-  // }
-
-
-  // const handleClick = (id) =>{
-  //   console.log("click");
-  //   console.log(id);
-  // }
-
-  const handleClick = async (id) =>{
+  const handleClick = async (id, e) => {
     // const updatedPost = {
     //   id,
-    //   isApproved
-    // };
-    
-    try{
-      
+    //   isStatus
+    // }; 
+    try {
 
-      setApproved(true);
+      setStatus(true);
       console.log("Post id " + id);
       const response = await api.put("/post/approve/" + id);
       console.log(response.data);
-       
-
-
-    }
-    catch(err)
-    {
+    } catch (err) {
       console.log(err);
     }
-  }
+  };
 
   useEffect(() => {
-    //Uses react hhooks to make HTTP request
-    
     handleClick();
-
-  },[])
-
- 
+  }, []);
 
   return (
-    <div className="bootstrap-list">
-      <ListGroup as="ul" >
-        {posts?.map((post) => (
-          <ListGroup.Item key={post.id} className="d-flex justify-content-center align-items-start mb-2">
-            <div>
-            { String(post.approved).toUpperCase() == 'FALSE' ?  <Badge bg="warning" pill>{post.id}</Badge> : <Badge bg="primary" pill>{post.id}</Badge> }
-            </div>
-              
-            
-            <div className="ms-2 me-auto">
-              <div className="fw-bold">{post.title}</div>
-              <div>{post.description}</div>
-              <div className="text-muted">{String (post.approved).toUpperCase() }</div>
-              <div>{post.dateOfEvent}</div>
-            </div>
+    <div className="admin-content">
+      <ListGroup as="ul">
+        {posts
+          ?.filter((posts) => String(posts.status).toUpperCase() === "PENDING")
+          .map((post) => (
+            <ListGroup.Item key={post.id}>
+              <div>
+                <div>
+                  {String(post.title) == "null" ? (
+                    <div className="post-title">Post</div>
+                  ) : (
+                    <div className="post-title">{post.title}</div>
+                  )}
+                </div>
 
-            <Button variant="success" type="submit" value={post.id || 0} onClick={() => handleClick(post.id)} size="sm"className="mb-1">Approve </Button>
+                <div>
+                  {String(post.description) == "null" ? (
+                    <div className="post-description">--</div>
+                  ) : (
+                    <div className="post-description">{post.description}</div>
+                  )}
+                </div>
+                <div> Post ID: {post.id}</div>
+                <div>Post Status: {post.status}</div>
 
+                <div>
+                  {String(post.dateOfEvent) == "null" ? (
+                    <div>Event Date: No Date</div>
+                  ) : (
+                    <div>Event Date: {post.dateOfEvent}</div>
+                  )}
+                </div>
+              </div>
 
-
-            
-          </ListGroup.Item>
-        ))}
+              <div>
+                <div>
+                  <div>
+                    <Button
+                      variant="success"
+                      name="approve"
+                      type="submit"
+                      value={post.id || 0}
+                      onClick={(e) => handleClick(post.id, e)}
+                      size="sm"
+                      className="mb-1"
+                    >
+                      Approve{" "}
+                    </Button>
+                  </div>
+                  {/* <div>
+                    <Button
+                      variant="danger"
+                      name="deny"
+                      type="submit"
+                      value={post.id || 0}
+                      onClick={(e) => handleClick(post.id, e)}
+                      size="sm"
+                      className="mb-1"
+                    >
+                      Reject{" "}
+                    </Button>
+                  </div> */}
+                </div>
+              </div>
+            </ListGroup.Item>
+          ))}
       </ListGroup>
     </div>
   );
 };
-

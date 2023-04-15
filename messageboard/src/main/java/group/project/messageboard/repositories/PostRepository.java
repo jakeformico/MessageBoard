@@ -12,21 +12,29 @@ public interface PostRepository extends CrudRepository<Post, Long> {
 
     public default Post updatePost(Post existingPost, Post newPost)
     {
-        existingPost.setTitle(newPost.getTitle());
-        existingPost.setDateOfEvent(newPost.getDateOfEvent());
-        existingPost.setApproved(newPost.isApproved());
-        existingPost.setCreatedAt(newPost.getCreatedAt());
-        existingPost.setPerson(newPost.getPerson());
-        existingPost.setDateOfExpiration(newPost.getDateOfExpiration());
-        existingPost.setDescription(newPost.getDescription());
-        existingPost.setUploadedFile(newPost.getUploadedFile());
+        if(newPost.getTitle() != null)
+            existingPost.setTitle(newPost.getTitle());
+        if(newPost.getDateOfEvent() != null)
+            existingPost.setDateOfEvent(newPost.getDateOfEvent());
+        if(newPost.getStatus() != null)
+            existingPost.setStatus(newPost.getStatus());
+        if(newPost.getCreatedAt() != null)
+            existingPost.setCreatedAt(newPost.getCreatedAt());
+        if(newPost.getPerson() != null)
+            existingPost.setPerson(newPost.getPerson());
+        if(newPost.getDateOfExpiration() != null)
+            existingPost.setDateOfExpiration(newPost.getDateOfExpiration());
+        if(newPost.getDescription() != null)
+            existingPost.setDescription(newPost.getDescription());
+        if(newPost.getFile() != null)
+            existingPost.setFile(newPost.getFile());
         return this.save(existingPost);
     }
 
-    @Query("SELECT p.id, p.title, p.dateOfEvent FROM Post p WHERE p.isApproved = true AND p.dateOfExpiration > :today")
+    @Query("SELECT p.id, p.title, p.dateOfEvent FROM Post p WHERE p.status = 1 AND p.dateOfExpiration > :today")
     Iterable<Post> getCalendarView(LocalDate today);
 
-    @Query("SELECT p FROM Post p WHERE p.isApproved = true")
+    @Query("SELECT p FROM Post p WHERE p.status = 1")
     Iterable<Post> getApprovedPosts();
 
     Iterable<Post> findByPersonId(Long personId);
@@ -34,6 +42,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     @Query("SELECT p FROM Post p JOIN p.person pe WHERE pe.id = :personId")
     Iterable<Post> getPostStatusByPersonId(Long personId);
 
-    @Query("SELECT p.title, p.person, p.rejectionComments FROM Post p WHERE p.isApproved = false")
+    @Query("SELECT p.title, p.person.firstName, p.person.lastName, p.status, p.rejectionComments FROM Post p WHERE p.status = 2")
     Iterable<Post> getDenialReport();
 }
