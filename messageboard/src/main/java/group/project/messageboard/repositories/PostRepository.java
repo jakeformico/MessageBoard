@@ -16,8 +16,8 @@ public interface PostRepository extends CrudRepository<Post, Long> {
             existingPost.setTitle(newPost.getTitle());
         if(newPost.getDateOfEvent() != null)
             existingPost.setDateOfEvent(newPost.getDateOfEvent());
-        if(newPost.isApproved() != existingPost.isApproved())
-            existingPost.setApproved(newPost.isApproved());
+        if(newPost.getStatus() != null)
+            existingPost.setStatus(newPost.getStatus());
         if(newPost.getCreatedAt() != null)
             existingPost.setCreatedAt(newPost.getCreatedAt());
         if(newPost.getPerson() != null)
@@ -31,10 +31,10 @@ public interface PostRepository extends CrudRepository<Post, Long> {
         return this.save(existingPost);
     }
 
-    @Query("SELECT p.id, p.title, p.dateOfEvent FROM Post p WHERE p.isApproved = true AND p.dateOfExpiration > :today")
+    @Query("SELECT p.id, p.title, p.dateOfEvent FROM Post p WHERE p.status = 1 AND p.dateOfExpiration > :today")
     Iterable<Post> getCalendarView(LocalDate today);
 
-    @Query("SELECT p FROM Post p WHERE p.isApproved = true")
+    @Query("SELECT p FROM Post p WHERE p.status = 1")
     Iterable<Post> getApprovedPosts();
 
     Iterable<Post> findByPersonId(Long personId);
@@ -42,6 +42,6 @@ public interface PostRepository extends CrudRepository<Post, Long> {
     @Query("SELECT p FROM Post p JOIN p.person pe WHERE pe.id = :personId")
     Iterable<Post> getPostStatusByPersonId(Long personId);
 
-    @Query("SELECT p.title, p.person, p.rejectionComments FROM Post p WHERE p.isApproved = false")
+    @Query("SELECT p.title, p.person, p.rejectionComments FROM Post p WHERE p.status = 2")
     Iterable<Post> getDenialReport();
 }
