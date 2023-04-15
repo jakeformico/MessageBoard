@@ -10,10 +10,10 @@ import { DenyUnverifiedPost } from "./DenyUnverifiedPost";
 
 export const DenialReportList = () => {
   const [byPostId, setByPostId] = useState(0);
-  const [approved, setApproved] = useState(false);
+  const [status, setStatus] = useState(false);
   const [id, setId] = useState();
   const [posts, setPosts] = useState();
-  // const [isApproved, setIsApproved] = useState(true);
+  // const [isStatus, setIsStatus] = useState(true);
 
   const getPosts = async () => {
     //e.preventDefault();

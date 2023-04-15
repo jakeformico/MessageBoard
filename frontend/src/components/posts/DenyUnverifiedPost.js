@@ -10,26 +10,26 @@ import Form from "react-bootstrap/Form";
 import  AddDenialReport  from "./AddDenialReport";
 export const DenyUnverifiedPost = ({ posts }) => {
   const [byPostId, setByPostId] = useState(0);
-  const [approved, setApproved] = useState(false);
+  const [status, setStatus] = useState(false);
   const [id, setId] = useState();
-  // const [isApproved, setIsApproved] = useState(true);
+  // const [isStatus, setIsStatus] = useState(true);
   console.log(posts);
 
   const handleClick = async (id, e) => {
     // const updatedPost = {
     //   id,
-    //   isApproved
+    //   isStatus
     // };
     console.log(e.target.name);
     try {
         if(e.target.name =="accept"){
-            setApproved(true);
+            setStatus(true);
             console.log("Post id " + id);
             const response = await api.put("/post/approve/" + id);
             console.log(response.data);
         }
         if(e.target.name =="reject"){
-            setApproved(false);
+            setStatus(false);
             console.log("Post id " + id);
             const response = await api.put("/post/reject/" + id);
             console.log(response.data);
@@ -51,7 +51,7 @@ export const DenyUnverifiedPost = ({ posts }) => {
       <h3>Denial Reports:</h3>
       <ListGroup as="ul">
         {posts
-          ?.filter((posts) => String(posts.approved).toUpperCase() === "FALSE")
+          ?.filter((posts) => String(posts.status).toUpperCase() === "FALSE")
           .map((post) => (
             <ListGroup.Item key={post.id}>
               <div>
@@ -74,7 +74,7 @@ export const DenyUnverifiedPost = ({ posts }) => {
                 {/* <div className="post-description">{post.description}</div> */}
                 <div> Post ID: {post.id}</div>
                 <div>
-                  {String(post.approved).toUpperCase() == "FALSE" ? (
+                  {String(post.status).toUpperCase() == "FALSE" ? (
                     <div>Post Status: PENDING</div>
                   ) : (
                     <div>Post Status: ACCEPTED </div>
@@ -90,7 +90,7 @@ export const DenyUnverifiedPost = ({ posts }) => {
               </div>
 
               <div>
-                {String(post.approved).toUpperCase() == "FALSE" ? (
+                {String(post.status).toUpperCase() == "FALSE" ? (
                   <Button
                     variant="success"
                     name="accept"

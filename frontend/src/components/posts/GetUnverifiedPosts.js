@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 export const GetUnverifiedPosts = () => {
   const [byPostId, setByPostId] = useState(0);
   const [posts, setPosts] = useState();
-  // const [isApproved, setIsApproved] = useState(true);
+  // const [isStatus, setIsApproved] = useState(true);
 
   const getPosts = async (e) => {
     e.preventDefault();
