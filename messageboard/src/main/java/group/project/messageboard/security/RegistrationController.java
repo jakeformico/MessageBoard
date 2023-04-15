@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatusCode;
 import group.project.messageboard.repositories.PersonRepository;
 
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/api/register")
 @CrossOrigin(origins = "http://localhost:3000")
 public class RegistrationController {
   
@@ -29,9 +29,9 @@ public class RegistrationController {
     return "registration";
   }
   
-  //@PostMapping(value = "/create")
-  //@ResponseStatus(HttpStatus.CREATED)
-  @PostMapping
+  @PostMapping(value = "/create")
+  @ResponseStatus(HttpStatus.CREATED)
+  //@PostMapping
   public String processRegistration(RegistrationForm form) {
     personRepo.save(form.toPerson(passwordEncoder));
     return "redirect:/login";
