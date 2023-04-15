@@ -39,44 +39,44 @@ function AddPost({ setPosts }) {
   return (
 
     <form onSubmit={handleUpload}>
-      <label>
+      <label style={{marginBottom: '8px', marginRight: '4px'}}>
         Title
+      </label>
         <input
           type="text"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
-      </label>
       <br />
-      <label>
+      <label style={{marginBottom: '8px', marginRight: '4px'}}>
         Description
+      </label>
         <input
           type="text"
           value={description}
           onChange={(event) => setDescription(event.target.value)}
         />
-      </label>
 
       <br />
-      <label>
+      <label style={{marginBottom: '8px', marginRight: '4px'}}>
         Date of Event
+      </label>
         <input
           type="date"
           value={dateOfEvent}
           onChange={(event) => setdateOfEvent(event.target.value)}
         />
-      </label>
       <br/>
-      <input type="file" onChange={handleFileChange} />
+      <input type="file" onChange={handleFileChange} style={{marginBottom: '8px'}}/>
       <br/>
-      <label>
+      <label style={{marginBottom: '8px', marginRight: '4px'}}>
         Date of Expiration
+      </label>
         <input
           type="date"
           value={dateOfExpiration}
           onChange={(event) => setdateOfExpiration(event.target.value)}
         />
-      </label>
       <br/>
       <button type="submit">Submit</button>
     </form>
