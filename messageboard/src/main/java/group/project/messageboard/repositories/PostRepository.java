@@ -19,7 +19,7 @@ public interface PostRepository extends CrudRepository<Post, Long> {
         existingPost.setPerson(newPost.getPerson());
         existingPost.setDateOfExpiration(newPost.getDateOfExpiration());
         existingPost.setDescription(newPost.getDescription());
-        existingPost.setUploadedFile(newPost.getUploadedFile());
+        existingPost.setFile(newPost.getFile());
         return this.save(existingPost);
     }
 

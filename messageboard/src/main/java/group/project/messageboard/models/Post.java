@@ -4,11 +4,14 @@ import java.time.LocalDate;
 import java.util.Date;
 
 import jakarta.annotation.Nonnull;
+import jakarta.persistence.Basic;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
 
@@ -27,7 +30,9 @@ public class Post {
 
     private boolean isApproved;
 
-    private String uploadedFile;
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private byte[] file;
 
     private String description;
 
@@ -39,4 +44,6 @@ public class Post {
     private LocalDate dateOfExpiration;
 
     private String rejectionComments;
+
+    private String contentType;
 }

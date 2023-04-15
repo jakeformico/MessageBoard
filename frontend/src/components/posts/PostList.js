@@ -10,9 +10,10 @@ export const PostList = () => {
   const getPosts = async () =>{
     try{
       const response = await api.get("/post");
-      console.log(response.data);
+      console.log(response.data)
       setPosts(response.data);
 
+      
     } 
     catch(err)
     {
@@ -21,10 +22,20 @@ export const PostList = () => {
   }
 
 
+  function base64toFile(file, contentType) {
+    const binaryString = atob(file);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    const blob = new Blob([bytes], { type: contentType });
+    return URL.createObjectURL(blob);
+  }
+
+
   useEffect(() => {
     //Uses react hhooks to make HTTP request
     getPosts();
-
   },[])
  
 
@@ -36,24 +47,27 @@ export const PostList = () => {
         <thead>
           <tr>
             <th>ID</th>
-            {/* <th>Posted By</th> */}
             <th>Is Approved</th>
-            <th>Uploaded File</th>
+            <th>File</th>
+            <th>File Type</th>
             <th>Title</th>
             <th>Description</th>
             <th>Date of Event</th>
             <th>Date of Exp</th>
             <th>Rejection Comments</th>
-            {/* <th colspan="2"></th> */}
           </tr>
         </thead>
         <tbody>
           {posts?.map((post) => (
             <tr key={post.id}>
               <td>{post.id}</td>
-              {/* <td>{post.person.firstName}</td> */}
               <td>{post.isApproved}</td>
-              <td>{post.uploadedFile}</td>
+              <td>
+                <a href={base64toFile(post.file, post.contentType)} target="_blank" rel="noopener noreferrer">
+                  Click to view file
+                </a>
+              </td>
+              <td>{post.contentType}</td>
               <td>{post.title}</td>
               <td>{post.description}</td>
               <td>{post.dateOfEvent}</td>
@@ -61,7 +75,6 @@ export const PostList = () => {
               <td>{post.rejectionComments}</td>
               {/* <td><button className={'btn'} type="submit">Accept</button></td>
               <td><button className={'btn'} type="submit">Reject</button></td> */}
-
             </tr>
           ))}
         </tbody>

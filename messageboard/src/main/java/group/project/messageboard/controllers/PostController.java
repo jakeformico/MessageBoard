@@ -1,5 +1,7 @@
 package group.project.messageboard.controllers;
 
+import java.io.Console;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import group.project.messageboard.models.Person;
 import group.project.messageboard.models.Post;
+import group.project.messageboard.models.PostWrapper;
 import group.project.messageboard.services.PersonService;
 import group.project.messageboard.services.PostService;
 
@@ -30,11 +33,20 @@ public class PostController {
 
     @PostMapping(value="/create/{personId}")
     @ResponseStatus(HttpStatus.CREATED)
-    public Post createPost(@RequestBody Post post, @PathVariable Long personId) throws Exception {
+    public Post createPost(@ModelAttribute PostWrapper postWrapper, @PathVariable Long personId) throws Exception {
         Person foundPerson = personService.getById(personId);
+        Post post = new Post();
         post.setPerson(foundPerson);
+        post.setFile(postWrapper.getFile().getBytes());
+        post.setContentType(postWrapper.getFile().getContentType());
+        post.setDateOfEvent(postWrapper.getDateOfEvent());
+        post.setDateOfExpiration(postWrapper.getDateOfExpiration());
+        post.setDescription(postWrapper.getDescription());
+        post.setTitle(postWrapper.getTitle());
         return postService.createPost(post);
     }
+
+    
 
     @PutMapping("/{id}")
     public Post updatePostById(@PathVariable Long id, @RequestBody Post post) throws Exception {
