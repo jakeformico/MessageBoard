@@ -12,7 +12,7 @@ import group.project.messageboard.repositories.PersonRepository;
 
 @Controller
 @RequestMapping("/register")
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
 public class RegistrationController {
   
   private PersonRepository personRepo;
